@@ -16,6 +16,7 @@ public class ProductPriceResource {
 	}
 
 	@GET
+	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String hello() {
 		return "Hello RESTEasy";
