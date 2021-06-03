@@ -11,3 +11,9 @@ public class ProductPriceResource {
         System.out.println("Kafka message received in Quarkus reactive: product-price-updated - Sending email : " + message);
     }   
 }
+
+@GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello() {
+        return "Hello RESTEasy";
+    }
