@@ -1,7 +1,10 @@
 package com.ibm;
 
-import org.eclipse.microprofile.reactive.messaging.Incoming;
-import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 @Path("/")
 public class ProductPriceResource {
@@ -12,11 +15,9 @@ public class ProductPriceResource {
 				"Kafka message received in Quarkus reactive: product-price-updated - Sending email : " + message);
 	}
 
-
-
-@GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy";
-    }
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String hello() {
+		return "Hello RESTEasy";
+	}
 }
