@@ -6,14 +6,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.eclipse.microprofile.reactive.messaging.Incoming;
+
 @Path("/")
 public class ProductPriceResource {
 
 	@POST
 	public void process(String message) {
 		System.out.println(
-				"Kafka message received in Quarkus reactive: product-price-updated - Sending email : " + message);
+				"Kafka message received with Quarkus reactive and Knative: product-price-updated - Sending email : " + message);
 	}
+	
+	@Incoming("product-price-updated")
+    public String processMessage(String message) {
+        System.out.println("Kafka message received in Quarkus reactive: product-price-updated - " + message);
+        return message;
+    }  
 
 	@GET
 	@Path("/hello")
