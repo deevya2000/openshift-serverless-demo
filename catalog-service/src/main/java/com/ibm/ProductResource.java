@@ -142,6 +142,8 @@ public class ProductResource {
                 //})
                 .onItem().transform(rows -> {
                     sendMessageToKafka(id, updatedProduct.price);  
+                    System.out.println("Going serverless");
+
                     String resp = notificationService.handePriceChange(String.valueOf(id), String.valueOf(updatedProduct.price));
                     System.out.println("Serverless Response = "+resp);
 
