@@ -18,7 +18,7 @@ public class ProductPriceResource {
 				"Kafka message received with Quarkus reactive and Knative: product-price-updated - Sending email : " + message);
 	}
 	
-	@Incoming("product-price-updated")
+//	@Incoming("product-price-updated")
     public String processMessage(String message) {
         System.out.println("Kafka message received in Quarkus reactive: product-price-updated - " + message);
         return message;
