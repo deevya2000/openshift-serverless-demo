@@ -16,6 +16,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
+
 import io.vertx.mutiny.sqlclient.Row;
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
@@ -34,6 +36,10 @@ public class ProductResource {
 
     @Inject
     private InitDatabase initDatabase;
+    
+    @Inject
+    @RestClient
+    NotificationService notificationService;
 
     @PostConstruct
     public void config() {
@@ -136,6 +142,7 @@ public class ProductResource {
                 //})
                 .onItem().transform(rows -> {
                     sendMessageToKafka(id, updatedProduct.price);  
+                    notificationService.handePriceChange(String.valueOf(id), String.valueOf(updatedProduct.price));
                     return updatedProduct;
                 })
                 .subscribeAsCompletionStage();            
