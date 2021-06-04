@@ -27,8 +27,9 @@ public class ProductPriceResource {
 	@GET
 	@Path("/pricechanged/{productId}/{newPrice}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public void pricechanged(@PathParam("productId") String productId, @PathParam("newPrice") String newPrice) {
+	public String pricechanged(@PathParam("productId") String productId, @PathParam("newPrice") String newPrice) {
 		System.out.println("Serverless call invoked for product ID : "+productId+", price has changed to "+newPrice);
+		return "Serverless called !!";
 	}
 	
 	@GET
